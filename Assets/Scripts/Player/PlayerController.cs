@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         StartSleeping();
     }
 
-    private void StartSleeping()
+    public void StartSleeping()
     {
         isSleeping = true;
         animator.SetBool("IsSleeping", true);
