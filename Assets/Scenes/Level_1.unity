@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 234944007}
   - component: {fileID: 234944008}
   m_Layer: 0
-  m_Name: Tower Blue
+  m_Name: BlueTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 495963174}
   - component: {fileID: 495963173}
   m_Layer: 0
-  m_Name: Bottom Left Wall
+  m_Name: BottomLeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 528461933}
   - component: {fileID: 528461934}
   - component: {fileID: 528461935}
+  - component: {fileID: 528461936}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -584,7 +585,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.416, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 709936244}
   m_Father: {fileID: 1658121922}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,6 +668,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.15, y: 0.85}
   m_EdgeRadius: 0
+--- !u!114 &528461936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528461932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400cd624848cb4b97a5677c7eb1a906f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sleepPosition: {fileID: 709936244}
+--- !u!1 &709936243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709936244}
+  m_Layer: 0
+  m_Name: SleepPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709936244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709936243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.079, y: 0.408, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528461933}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727722508
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +811,7 @@ Animator:
   m_GameObject: {fileID: 727722508}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f95127d2ed2034c358ed4582792e319b, type: 2}
+  m_Controller: {fileID: 9100000, guid: ad394f88391634989a3f3be469692fbe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -810,6 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  animator: {fileID: 727722513}
 --- !u!114 &727722516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +923,7 @@ GameObject:
   - component: {fileID: 811531336}
   - component: {fileID: 811531337}
   m_Layer: 0
-  m_Name: Tower Green
+  m_Name: GreenTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,7 +1107,7 @@ GameObject:
   - component: {fileID: 892026988}
   - component: {fileID: 892026989}
   m_Layer: 0
-  m_Name: Ball One
+  m_Name: SageBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,7 +1192,7 @@ GameObject:
   - component: {fileID: 1061633342}
   - component: {fileID: 1061633343}
   m_Layer: 0
-  m_Name: Food Plate
+  m_Name: FoodPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1245,7 +1292,7 @@ GameObject:
   - component: {fileID: 1217443212}
   - component: {fileID: 1217443213}
   m_Layer: 0
-  m_Name: Ball Two
+  m_Name: GreenBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,7 +1376,7 @@ GameObject:
   - component: {fileID: 1276641595}
   - component: {fileID: 1276641596}
   m_Layer: 0
-  m_Name: Album Two
+  m_Name: SecondAlbum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1509,7 +1556,7 @@ GameObject:
   - component: {fileID: 1496143468}
   - component: {fileID: 1496143469}
   m_Layer: 0
-  m_Name: Water Plate
+  m_Name: WaterPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1609,7 +1656,7 @@ GameObject:
   - component: {fileID: 1533946885}
   - component: {fileID: 1533946886}
   m_Layer: 0
-  m_Name: Mini Plant
+  m_Name: MiniPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,7 +1740,7 @@ GameObject:
   - component: {fileID: 1575330465}
   - component: {fileID: 1575330464}
   m_Layer: 0
-  m_Name: CM Player Camera
+  m_Name: CMPlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,7 +1813,7 @@ GameObject:
   - component: {fileID: 1602409794}
   - component: {fileID: 1602409795}
   m_Layer: 0
-  m_Name: Shoe Rack
+  m_Name: ShoeRack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1892,7 +1939,7 @@ GameObject:
   - component: {fileID: 1624304117}
   - component: {fileID: 1624304118}
   m_Layer: 0
-  m_Name: Album One
+  m_Name: FirstAlbum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1976,7 +2023,7 @@ GameObject:
   - component: {fileID: 1633928362}
   - component: {fileID: 1633928363}
   m_Layer: 0
-  m_Name: Album Three
+  m_Name: ThirdAlbum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2161,7 +2208,7 @@ GameObject:
   - component: {fileID: 1686118035}
   - component: {fileID: 1686118034}
   m_Layer: 0
-  m_Name: Top Left Wall
+  m_Name: TopLeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2271,7 +2318,7 @@ GameObject:
   - component: {fileID: 1731373350}
   - component: {fileID: 1731373351}
   m_Layer: 0
-  m_Name: Window Left
+  m_Name: LeftWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2391,7 +2438,7 @@ GameObject:
   - component: {fileID: 1786237472}
   - component: {fileID: 1786237473}
   m_Layer: 0
-  m_Name: Top Right Wall
+  m_Name: TopRightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2501,7 +2548,7 @@ GameObject:
   - component: {fileID: 1991769587}
   - component: {fileID: 1991769588}
   m_Layer: 0
-  m_Name: Window Right
+  m_Name: RightWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2586,7 +2633,7 @@ GameObject:
   - component: {fileID: 2024502914}
   - component: {fileID: 2024502913}
   m_Layer: 0
-  m_Name: Bottom Right Wall
+  m_Name: BottomRightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
