@@ -2,15 +2,30 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Reference to PlayerController
     public PlayerController playerController;
+    public FoodPlate foodPlate;
+    public Bed bed;
 
-    // Add more functions for other interactions, like sleeping, playing, etc.
-    public void SleepPlayer()
+    private void Start()
     {
-        if (playerController != null)
-        {
-            playerController.StartSleeping();  // Assuming the Sleep method exists in PlayerController
+        if (playerController == null || foodPlate == null || bed == null) {
+            Debug.LogError("UIManager missing references!");
+            return;
         }
+
+        playerController.SetDependencies(foodPlate, bed);
+    }
+
+
+    public void EatBtnOnClick()
+    {
+        if (playerController == null || foodPlate == null) return;
+        StartCoroutine(playerController.StartEating());
+    }
+
+    public void SleepBtnOnClick()
+    {
+        if (playerController == null || bed == null) return;
+        playerController?.StartSleeping();
     }
 }

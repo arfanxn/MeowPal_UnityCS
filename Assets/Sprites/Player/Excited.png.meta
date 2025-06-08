@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20353c08a519c4f8982c61fc29cd97d1
+guid: e66793402d16347b593421030c038d34
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: Excited_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a2065e8cfdbf46df8643e427927d8b7
-      internalID: 1395901304
+      spriteID: 6147cc16e530c461bb959bc5b53f2b61
+      internalID: -1268863644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_1
+      name: Excited_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aeec66718d744255b2da785b6a59984
-      internalID: -1502367831
+      spriteID: 4d796e415bca042a49090abc09752e46
+      internalID: 1357752197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: Excited_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fa86d461ca0a4f94864a4fc6e167e4c
-      internalID: 1175064043
+      spriteID: fdfa52e3cd2404e0ca29b340ba9ccf2f
+      internalID: -1841669112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: Excited_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 876ad98b4e4264ae294599c7686e9fac
-      internalID: -1952290496
+      spriteID: b79d491d354824c6a9213a33bf159050
+      internalID: -1022647851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_4
+      name: Excited_4
       rect:
         serializedVersion: 2
         x: 128
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2eb7543d93e4b40aeae713c011b603
-      internalID: 1006105346
+      spriteID: b7ad696a238dd47199c587f4ea243179
+      internalID: 619156190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_5
+      name: Excited_5
       rect:
         serializedVersion: 2
         x: 160
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec3b99c8985204bf4a2ce8c3c05f01bb
-      internalID: -1451976601
+      spriteID: 4cb4233c7ad754e2cb6ecbd074fdfdca
+      internalID: 36012360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_6
+      name: Excited_6
       rect:
         serializedVersion: 2
         x: 192
@@ -257,8 +257,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 624fa1202d8cb414d9071d6f8c9e4864
-      internalID: 12338709
+      spriteID: 4401c60e0e4a743ac969a80e1c54e2cd
+      internalID: -1911289607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excited_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc005f94325704cb7ad550351367e5be
+      internalID: 634560558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excited_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14196cc8431ea4fce9d6ea3700cf14f7
+      internalID: -211298049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excited_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56e7fcba8a4040178dca1e2ff8c809a
+      internalID: 268367072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excited_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 361579cec74b349f5854df9165ad1a4d
+      internalID: -482514908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Excited_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8351dc7314d2d45828d08171bb8a61f0
+      internalID: 2019903008
       vertices: []
       indices: 
       edges: []
@@ -274,13 +379,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle_0: 1395901304
-      Idle_1: -1502367831
-      Idle_2: 1175064043
-      Idle_3: -1952290496
-      Idle_4: 1006105346
-      Idle_5: -1451976601
-      Idle_6: 12338709
+      Excited_0: -1268863644
+      Excited_1: 1357752197
+      Excited_10: -482514908
+      Excited_11: 2019903008
+      Excited_2: -1841669112
+      Excited_3: -1022647851
+      Excited_4: 619156190
+      Excited_5: 36012360
+      Excited_6: -1911289607
+      Excited_7: 634560558
+      Excited_8: -211298049
+      Excited_9: 268367072
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
