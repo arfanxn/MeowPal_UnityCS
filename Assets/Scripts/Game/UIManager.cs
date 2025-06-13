@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,46 +8,48 @@ public class UIManager : MonoBehaviour
     public FoodPlate foodPlate;
     public Bed bed;
 
+    public Slider sleepySlider;
+    public Slider hungerSlider;
+
     public GameObject pauseMenuPanel;
 
     private void Start()
     {
-        if (playerController == null || foodPlate == null || bed == null)
-        {
+        if (
+            pauseMenuPanel == null
+            || playerController == null
+            || foodPlate == null
+            || bed == null
+            || sleepySlider == null
+            || hungerSlider == null
+        ) {
             Debug.LogError("UIManager missing references!");
             return;
         }
-        playerController.SetDependencies(foodPlate, bed);
 
         pauseMenuPanel?.SetActive(false);
     }
 
     public void EatBtnOnClick()
     {
-        if (playerController == null || foodPlate == null) return;
-        StartCoroutine(playerController.StartEating());
+        StartCoroutine(playerController.StartEating(foodPlate.eatPosition));
     }
 
     public void SleepBtnOnClick()
     {
-        if (playerController == null || bed == null) return;
-        playerController?.StartSleeping();
+        StartCoroutine(playerController?.StartSleeping(bed.sleepPosition));
     }
 
     public void PauseBtnOnClick()
     {
-        if (pauseMenuPanel != null) {
-            pauseMenuPanel.SetActive(true);
-            Time.timeScale = 0f;
-        }
+        pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ResumeBtnOnClick()
     {
-        if (pauseMenuPanel != null) {
-            pauseMenuPanel.SetActive(false);
-            Time.timeScale = 1f;
-        }
+        pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void MenuBtnOnClick()
@@ -54,4 +57,11 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    private void Update()
+    {
+        sleepySlider.value = playerController.sleepyStatValue;
+        hungerSlider.value = playerController.hungerStatValue;
+    }
+
 }

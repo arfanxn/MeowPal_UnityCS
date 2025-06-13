@@ -4,33 +4,47 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] public readonly float movementSpeed = 5f;
-    [SerializeField] public Joystick joystick;
+    // ==================================================
+    //                  SERIALIZED FIELDS
+    //  (Variables that you can see and edit in the Unity Inspector)
+    // ==================================================
 
-    [Header("Actions")]
+    [Header("Configuration")]
+    [SerializeField] private readonly float movementSpeed = 5f;
+    [SerializeField] private readonly float sleepDuration = 5f;
+    [SerializeField] private readonly float eatDuration = 2f;
+    [SerializeField] private readonly float maxStatValue = 100f;
+    [SerializeField] private readonly float hungerDecayRate = 2f;    // Hunger points lost per second
+    [SerializeField] private readonly float sleepyDecayRate = 1.0f;  // Sleepiness points lost per second
+
+    [Header("Component References")]
+    [SerializeField] private Joystick joystick;
     [SerializeField] private Animator animator;
+
+    // ==================================================
+    //                  PUBLIC STATE
+    //  (Variables that other scripts, like UIManager, might need to read)
+    // ==================================================
+    
+    public float hungerStatValue = 100f;
+    public float sleepyStatValue = 100f;
+
+    // ==================================================
+    //                  PRIVATE STATE & CACHED COMPONENTS
+    //  (Internal variables for this script's logic)
+    // ==================================================
 
     private SpriteRenderer spriteRenderer;
     private Vector2 movementInput;
     private Rigidbody2D rb;
     private PlayerControls playerControls;
 
-    private FoodPlate foodPlate;
-    private Bed bed;
-    private Coroutine sleepCountdownCoroutine;
     private bool isSleeping;
     private bool isEating;
 
     // ==================================================
     //                      SETUPS
     // ==================================================
-
-    public void SetDependencies(FoodPlate foodPlate, Bed bed)
-    {
-        this.foodPlate = foodPlate;
-        this.bed = bed;
-    }
 
     private void Awake()
     {
@@ -75,10 +89,6 @@ public class PlayerController : MonoBehaviour
     {
         /*
         * Disabled until new release
-        if (isSleeping || isEating) return;
-        if (!other.TryGetComponent<Bed>(out _)) return;
-        
-        StartSleepCountdown();
         */
     }
 
@@ -86,9 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         /*
         * Disabled until new release
-        if (other.TryGetComponent<Bed>(out _) && sleepCountdownCoroutine != null){
-            StopSleepCountdown();
-        }
         */
     }
 
@@ -108,86 +115,88 @@ public class PlayerController : MonoBehaviour
     }
 
     // ==================================================
-    //                      EATING
+    //                      Handlers
     // ==================================================
 
-    public IEnumerator StartEating()
+    private void HandleStatsDecay()
     {
-        if (isEating || isSleeping || foodPlate == null)
-        {
+        if (hungerStatValue > 0 && !isEating) {
+            hungerStatValue -= hungerDecayRate * Time.deltaTime;
+        }
+
+        if (sleepyStatValue > 0 && !isSleeping){
+            sleepyStatValue -= sleepyDecayRate * Time.deltaTime;
+        }
+    }
+
+    // ==================================================
+    //                      Eating
+    // ==================================================
+
+    public IEnumerator StartEating(Transform eatPosition)
+    {
+        if (isEating || isSleeping) {
             yield break;
         }
 
         rb.velocity = Vector2.zero;
         rb.simulated = false;
 
-        transform.position = foodPlate.eatPosition.position;
+        transform.position = eatPosition.position;
 
         SetIsEating(true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(eatDuration);
 
         SetIsEating(false);
 
         rb.simulated = true;
+
+        hungerStatValue = maxStatValue;
     }
 
     // ==================================================
-    //                      SLEEPING
+    //                      Sleeping
     // ==================================================
 
-    private void StartSleepCountdown()
+    public IEnumerator StartSleeping(Transform sleepPosition)
     {
-        sleepCountdownCoroutine = StartCoroutine(SleepCountdown());
-        StartSleeping();
-    }
-
-    private void StopSleepCountdown()
-    {
-        if (sleepCountdownCoroutine != null) {
-            StopCoroutine(sleepCountdownCoroutine);
-            sleepCountdownCoroutine = null;
+        if (isEating || isSleeping) {
+            yield break;
         }
-    }
 
-    private IEnumerator SleepCountdown()
-    {
-        yield return new WaitForSeconds(3f);
-    }
-
-    public void StartSleeping()
-    {
-        if (isEating) return;
-
-        SetIsSleeping(true);
-        transform.position = bed.sleepPosition.position;
         rb.velocity = Vector2.zero;
         rb.simulated = false;
-    }
 
-    private void StopSleeping()
-    {
-        if (!isSleeping) return;
+        transform.position = sleepPosition.position;
+
+        SetIsSleeping(true);
+
+        yield return new WaitForSeconds(sleepDuration);
 
         SetIsSleeping(false);
+
         rb.simulated = true;
+        
+        sleepyStatValue = maxStatValue;
     }
 
     // ==================================================
-    //                      UPDATES
+    //                      Updates
     // ==================================================
 
     private void OnMove(InputAction.CallbackContext context)
     {
-        if (isSleeping) StopSleeping();
         movementInput = context.ReadValue<Vector2>();
+    }
+
+    private void Update()
+    {
+        HandleStatsDecay();
     }
 
     private void FixedUpdate()
     {
-        if (isSleeping && joystick.Direction.magnitude >= 0.1f)
-            StopSleeping();
-
         Vector2 direction = joystick.Direction.magnitude >= 0.1f ? joystick.Direction : movementInput;
         rb.velocity = direction * movementSpeed;
 
