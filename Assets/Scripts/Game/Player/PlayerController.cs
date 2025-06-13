@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private readonly float sleepDuration = 5f;
     [SerializeField] private readonly float eatDuration = 2f;
     [SerializeField] private readonly float maxStatValue = 100f;
-    [SerializeField] private readonly float hungerDecayRate = 2f;    // Hunger points lost per second
-    [SerializeField] private readonly float sleepyDecayRate = 1.0f;  // Sleepiness points lost per second
+    [SerializeField] private readonly float hungerDecayRate = 6.5f; // Hunger points lost per second
+    [SerializeField] private readonly float sleepyDecayRate = 1.5f;  // Sleepiness points lost per second
 
     [Header("Component References")]
     [SerializeField] private Joystick joystick;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isSleeping;
     private bool isEating;
+    private bool isDead;
 
     // ==================================================
     //                      SETUPS
@@ -113,6 +114,21 @@ public class PlayerController : MonoBehaviour
         this.isEating = isEating;
         animator.SetBool("IsEating", isEating);
     }
+    
+    public void SetIsDead(bool isDead)
+    {
+        this.isDead = isDead;
+        animator.SetBool("IsDead", isDead);
+    }
+
+    // ==================================================
+    //                      Getters
+    // ==================================================
+
+    public float GetMaxStatValue() => maxStatValue;
+    public float GetHungerStatValue() => hungerStatValue;
+    public float GetSleepyStatValue() => sleepyStatValue;
+    public bool GetIsDead() => isDead;
 
     // ==================================================
     //                      Handlers
@@ -124,9 +140,21 @@ public class PlayerController : MonoBehaviour
             hungerStatValue -= hungerDecayRate * Time.deltaTime;
         }
 
-        if (sleepyStatValue > 0 && !isSleeping){
+        if (sleepyStatValue > 0 && !isSleeping) {
             sleepyStatValue -= sleepyDecayRate * Time.deltaTime;
         }
+
+        if (hungerStatValue <= 0 && sleepyStatValue <= 0) {
+            HandleDead();
+        }
+    }
+    
+    private void HandleDead()
+    {
+        SetIsDead(true);
+
+        rb.velocity = Vector2.zero;
+        rb.simulated = false;
     }
 
     // ==================================================
@@ -135,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator StartEating(Transform eatPosition)
     {
-        if (isEating || isSleeping) {
+        if (isEating || isSleeping || isDead) {
             yield break;
         }
 
@@ -161,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator StartSleeping(Transform sleepPosition)
     {
-        if (isEating || isSleeping) {
+        if (isEating || isSleeping || isDead) {
             yield break;
         }
 
@@ -187,16 +215,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext context)
     {
+        if (isDead) return;
+
         movementInput = context.ReadValue<Vector2>();
     }
 
     private void Update()
     {
+        if (isDead) return;
+
         HandleStatsDecay();
     }
 
     private void FixedUpdate()
     {
+        if (isDead) return;
+
         Vector2 direction = joystick.Direction.magnitude >= 0.1f ? joystick.Direction : movementInput;
         rb.velocity = direction * movementSpeed;
 
