@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class UIManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
     public FoodPlate foodPlate;
@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
             || hungerSlider == null
         )
         {
-            Debug.LogError("UIManager missing references!");
+            Debug.LogError("GameManager missing references!");
             return;
         }
 

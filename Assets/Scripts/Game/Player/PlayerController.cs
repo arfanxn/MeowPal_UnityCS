@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     // ==================================================
     //                  PUBLIC STATE
-    //  (Variables that other scripts, like UIManager, might need to read)
+    //  (Variables that other scripts, like GameManager, might need to read)
     // ==================================================
     
     public float hungerStatValue = 100f;
