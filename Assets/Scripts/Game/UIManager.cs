@@ -33,6 +33,11 @@ public class UIManager : MonoBehaviour
         pauseMenuPanel?.SetActive(false);
     }
 
+    public void DanceBtnClick()
+    {
+        StartCoroutine(playerController.StartDancing());
+    }
+
     public void EatBtnOnClick()
     {
         StartCoroutine(playerController.StartEating(foodPlate.eatPosition));

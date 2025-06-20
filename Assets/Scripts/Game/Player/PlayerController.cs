@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isSleeping;
     private bool isEating;
+    private bool isDancing;
     private bool isDead;
 
     // ==================================================
@@ -114,6 +115,12 @@ public class PlayerController : MonoBehaviour
         this.isEating = isEating;
         animator.SetBool("IsEating", isEating);
     }
+
+    public void SetIsDancing(bool isDancing)
+    {
+        this.isDancing = isDancing;
+        animator.SetBool("IsDancing", isDancing);
+    }
     
     public void SetIsDead(bool isDead)
     {
@@ -156,6 +163,19 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.simulated = false;
     }
+    
+    // ==================================================
+    //                      Eating
+    // ==================================================
+
+    public IEnumerator StartDancing()
+    {
+        if (isEating || isSleeping || isDancing || isDead) {
+            yield break;
+        }
+
+        SetIsDancing(true);
+    }
 
     // ==================================================
     //                      Eating
@@ -163,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator StartEating(Transform eatPosition)
     {
-        if (isEating || isSleeping || isDead) {
+        if (isEating || isSleeping || isDancing || isDead) {
             yield break;
         }
 
@@ -189,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator StartSleeping(Transform sleepPosition)
     {
-        if (isEating || isSleeping || isDead) {
+        if (isEating || isSleeping || isDancing || isDead) {
             yield break;
         }
 
@@ -218,6 +238,9 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         movementInput = context.ReadValue<Vector2>();
+        if (movementInput.magnitude > 0 && isDancing) { 
+            SetIsDancing(false);
+        }
     }
 
     private void Update()
@@ -233,6 +256,14 @@ public class PlayerController : MonoBehaviour
 
         Vector2 direction = joystick.Direction.magnitude >= 0.1f ? joystick.Direction : movementInput;
         rb.velocity = direction * movementSpeed;
+
+        // if (joystick.Direction.magnitude >= 0.1f && isDancing) { 
+        //     SetIsDancing(false);
+        // }
+
+        if (direction.magnitude > 0.1f && isDancing) {
+            SetIsDancing(false);
+        }
 
         if (direction.x != 0)
             spriteRenderer.flipX = direction.x > 0;
